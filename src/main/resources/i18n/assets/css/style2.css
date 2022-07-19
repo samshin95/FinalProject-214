@@ -1,0 +1,31 @@
+
+/*搜索框7*/
+.bar7 {background: #ffffff;}
+.bar7 form {
+  height: 42px;
+
+}
+.bar7 input {
+ 
+  width: 550px;
+  border-radius: 42px;
+  border: 2px solid #020202;;
+  background: #ffffff;
+  transition: .3s linear;
+  float: right;
+}
+.bar7 input:focus {
+ 
+  width: 550px;
+}
+.bar7 button {
+  background: #ffffff;
+  top: 8px;
+  right: 13px;
+}
+.bar7 button:before{
+  content: "\f002";
+  font-family: FontAwesome;
+  color: #000000;
+
+}

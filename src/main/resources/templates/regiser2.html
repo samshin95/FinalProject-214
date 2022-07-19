@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Login V5</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+<!--==========LO=====================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
+</head>
+<body>
+
+	<div class="limiter">
+		<div class="container-login100" style="background-image: url('images/bg-01.jpg');">
+			<div class="wrap-login100 p-l-110 p-r-110 p-t-62 p-b-33">
+				<form class="login100-form validate-form flex-sb flex-w">
+					<span class="login100-form-title p-b-53">
+						註冊
+					</span>
+
+					<a href="#" class="btn-face m-b-20">
+						<i class="fa fa-facebook-official"></i>
+						Facebook
+					</a>
+
+					<a href="#" class="btn-google m-b-20" id="GOOGLE_login">
+						<img src="images/icons/icon-google.png" alt="GOOGLE">
+						Google
+					</a>
+             
+                    <div class="p-t-31 p-b-9">
+						<span class="txt1">
+							請輸入真實姓名
+						</span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate = "Username is required">
+						<input class="input100" type="text" name="username" id="a" >
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="p-t-31 p-b-9">
+						<span class="txt1">
+							設定匿稱
+						</span>
+                    </div>
+
+					<div class="wrap-input100 validate-input" data-validate = "Username is required">
+						<input class="input100" type="text" name="userID"  id="b">
+						<span class="focus-input100"></span>
+					</div>
+					
+					<p>
+
+					<div class="p-t-13 p-b-9">
+						<span class="txt1">
+							設定密碼
+						</span>
+
+											
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate = "Password is required">
+						<input class="input100" type="password" name="pass"  >
+						<span class="focus-input100"></span>	
+					</div>
+
+					<p>
+
+					<div class="p-t-13 p-b-9">
+						<span class="txt1">
+							設定信箱
+						</span>
+				     </div>
+					<div class="wrap-input100 validate-input" data-validate = "email is required" >
+						<input class="input100" type="text" name="email" pattern="[^ @]*@[^ @]*" id="c">
+						<span class="focus-input100"></span>
+					</div>
+
+					<p>
+
+					<div class="p-t-31 p-b-9">
+						<span class="txt1">
+							手機號碼
+						</span>
+                    </div>
+
+					<div class="wrap-input100 validate-input" data-validate = "telephone is required">
+						<input class="input100" type="text" name="telephone" id="e">
+						<span class="focus-input100"></span>
+					</div>
+
+					<p>
+					
+                    <div class="p-t-31 p-b-9">
+						<span class="txt1">
+							請輸入生日日期(生日月份會寄送電子折價券)
+						</span>
+                    </div>
+					
+			
+
+                    <div class="wrap-input100 validate-input" data-validate = "Username is required">
+					<input type="date"class="input100"
+                    id="f" placeholder="請輸入生日日期">
+                    <span class="focus-input100"></span>
+                    </div>
+
+					<br>
+
+					
+					<div class="container-login100-form-btn m-t-17">
+						<button class="login100-form-btn">
+							送出資料
+						</button>
+					</div>
+
+					<div class="w-full text-center p-t-55">
+						<span class="txt2">
+							你已經有帳號了?
+						</span>
+
+						<a href="http://127.0.0.1:5500/sign%20in.html" class="txt2 bo1">
+							前往登入
+						</a>
+					</div>
+
+					
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+
+	<div id="dropDownSelect1"></div>
+	
+<!--===============================================================================================-->
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/daterangepicker/moment.min.js"></script>
+	<script src="vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+
+ 	<script>
+	function myFunction() {
+		var x = document.getElementById("myInput");
+		if (x.type === "password") {
+		  x.type = "text";
+		} else {
+		  x.type = "password";
+		}
+	  }
+	  </script>
+
+	
+
+<!------------------------------------------------------------------------------------>
+
+<!--jQuery-->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<!--Bootstrap-->
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"></link>
+
+<script src="https://apis.google.com/js/api:client.js"></script>
+
+<!--登入、登出按鈕-->
+<button id="GOOGLE_login" class="btn btn-large btn-primary">GOOGLE 登入</button> <button id="GOOGLE_logout" class="btn btn-large btn-warning">GOOGLE 登出</button>
+
+目前狀態：
+<span id="GOOGLE_STATUS_2"></span>
+<script>
+// 進行登入程序
+var startApp = function() {
+gapi.load("auth2", function() {
+auth2 = gapi.auth2.init({
+client_id: "282167256202-685a9ie02dspmq5mpoel2gtbojb8orh6.apps.googleusercontent.com", // 用戶端 ID
+cookiepolicy: "single_host_origin"
+});
+attachSignin(document.getElementById("GOOGLE_login"));
+});
+};
+
+function attachSignin(element) {
+auth2.attachClickHandler(element, {},
+// 登入成功
+function(googleUser) {
+var profile = googleUser.getBasicProfile(),
+$target = $("#GOOGLE_STATUS_2"),
+html = "";
+	
+html += "Name: " + profile.getName() + "<br/>"; document.getElementById("a").value = profile.getName();
+html += "會員暱稱ID: " + profile.getId() + "<br/>"; document.getElementById("b").value = profile.getId();
+html += "會員 email：" + profile.getEmail() + "<br/>"; document.getElementById("c").value = profile.getEmail();
+//html += "手機號碼：" + profile.getPhone() + "<br/>";
+//html += "生日日期：" + profile.getDate() + "<br/>"; 
+$target.html(html);
+},
+// 登入失敗
+function(error) {
+$("#GOOGLE_STATUS_2").html("");
+alert(JSON.stringify(error, undefined, 2));
+});
+}
+
+startApp();
+
+// 點擊登入
+$("#GOOGLE_login").click(function() {
+// 進行登入程序
+startApp();
+});
+
+// 點擊登出
+$("#GOOGLE_logout").click(function() {
+var auth2 = gapi.auth2.getAuthInstance();
+auth2.signOut().then(function() {
+// 登出後的動作
+$("#GOOGLE_STATUS_2").html("");
+});
+});
+</script>
+
+<!------------------------------------------------------------------------------------>
+
+
+
+</body>
+</html>

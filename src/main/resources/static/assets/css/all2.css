@@ -1,0 +1,30 @@
+.round_icon{
+  width: 34px;
+  height: 34px;
+  display: flex;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  top: 34px;
+  left: 950px;
+}
+ 
+.round_icon-1{
+ 
+  position: relative;
+  top: 6px;
+  left: 1000px;
+ 
+}
+ 
+ 
+ 
+.dialog{
+  position: absolute;
+ 
+  top: -50px;
+  left: 300px;
+ 
+}

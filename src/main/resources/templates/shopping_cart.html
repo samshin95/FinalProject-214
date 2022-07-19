@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+
+    <title>購物車</title>
+
+
+    <!-- Additional CSS Files -->
+
+
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.css">
+
+    <link rel="stylesheet" href="assets/css/templatemo-hexashop.css">
+
+    <link rel="stylesheet" href="assets/css/owl-carousel.css">
+
+    <link rel="stylesheet" href="assets/css/lightbox.css">
+
+    <link rel="stylesheet" type="text/css" href="css/shoppingcart.css"/>
+
+    <style>
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+    }
+    input[type='number'] {
+        -moz-appearance: textfield;
+        width: 40px;
+    }
+
+    </style>
+    </head>
+    
+    <body>
+    
+
+
+    <!-- ***** Preloader Start ***** -->
+    <div id="preloader">
+        <div class="jumper">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>  
+    <!-- ***** Preloader End ***** -->
+  <!-- ***** Header Area Start ***** -->
+      <header class="header-area header-sticky" style="position: fixed; background-color: white;" th:fragment="header">
+       <div th:replace="header :: header">Header</div>
+      </header>
+      <!-- ***** Header Area End ***** -->
+    <!-- ***** Header Area End ***** -->
+    <!-- ***** Main Banner Area Start ***** -->
+    <div class="main-banner" id="top">
+        <div class="container">
+            <div class="row justify-content-center">  <!-- 水平置中 -->
+                <div class="col-8">
+                    <div class="shop">
+                        <center>
+                           <h2 style="background-color:darkblue;color:white" class ="noclass">我的購物車</h2>
+                        </center>
+                    </div>
+
+                        <div class="product">
+                        <div class="product-box" th:each="order,iStat:${oarr}" style="margin-top:50px;margin-bottom:70px;">
+                            <div class="product-ckb">
+                                <em class="product-em"></em>
+                            </div>
+
+                            <div class="product-sx" style="position:relative ">
+                                <a th:href="@{'/single_product?productid='+${parr[iStat.index].id}}"  >
+                   <img class="NO-CACHE" th:if="${parr[iStat.index].hasImg==true}" th:src="@{${'assets/images/product/'+parr[iStat.index].picnum+parr[iStat.index].extension}}" style="max-height:40px; max-width:40px; height:auto; width:auto; text-align:center;" alt="your image">
+                   <img th:unless="${parr[iStat.index].hasImg==true}" src="assets/images/noimage.jpg" style="max-height:40px; max-width:40x; height:auto; width:auto; text-align:center;" alt="your image" >
+                                    <span class="product-name" th:text="${parr[iStat.index].productName+' '+psarr[iStat.index].size}"></span> 
+                                    <span class="product-price">$&thinsp;
+                                    <span class="price" th:text="${#numbers.formatDecimal(order.productprice/session.currentex,0,2)}"></span>
+                                    </span>
+                                </a>
+                            
+                            <div class="product-amount">
+                                <div class="product_gw">
+                                  <em class="product-jian">-</em>
+                             <input type="text" min=1 th:value="${order.amount}" th:max="${psarr[iStat.index].left}" class="product-num pnumb">
+                                 <em class="product-add">+</em> 
+                                </div>
+                                
+                            </div>
+                            <input class="orderid" type="hidden" th:value="${order.id}" readonly>
+                            <input class="maxnum" type="hidden" th:value="${psarr[iStat.index].left+1}" >
+                            <span hidden class="realprice" th:text="${#numbers.formatDecimal(order.productprice/session.currentex,0,2)}"></span>
+                            <div class="product-del">
+                                <img src="images/deleteico.png"/>
+                            </div>
+
+                            <div  style="position:absolute; top : 60px; left:190px ; width:300px;" >
+                                <select class="product-fee" onchange="addfee()"> 
+                                    <option selected class="shipin firstclass" th:if="${iStat.index==0}"  th:each="shipn,num:${sarr[iStat.index]}" th:value="${shipn[0]+','+shipn[1]+','+shipn[2]}"  th:text="${shipn[3]}"></option>
+                                    <option class="shipin" th:unless="${iStat.index==0}"  th:each="shipn,num:${sarr[iStat.index]}" th:value="${shipn[0]+','+shipn[1]+','+shipn[2]}"  th:text="${shipn[3]}"></option>
+                                </select>
+                            </div>
+                            
+                           
+                        </div>
+                       </div>
+                 
+                    <div class="product-ckb" style="position:relative">
+                        <div class="product-al" style="" >
+                            <div class="product-all"><em class=""></em></div>
+                                <div class="all-xz"></div>
+                                    <span class="product-all-qx">全選</span>
+                                <div class="all-sl" style="display: none;">
+                                    (<span class="product-all-sl">0</span>)
+                                </div>
+                            </div>
+                     </div>
+
+                        
+                              
+                    </div>
+                    
+                    
+                    <div>
+                        <a onclick="send()" class="product-sett product-sett-a">結帳</a>
+
+                        <div class="all-product">
+                            <span class="all-product-a">$&thinsp;
+                                <span class="all-price" id="allPrice"></span>
+                            </span>
+                        </div>
+                         <div class="usecoin" style="width:300px; position: absolute; bottom:40px;left:600px;">                            
+                            <em class="product-jian">-</em>   <!-- th:max="${#numbers.formatInteger(coin,0)}" -->
+                             <input type="number" min=0 value=0  class="product-num " id="coinz" style="width:110">
+                              <input hidden type="number" min=0 th:value="${coin}" id="coinz2">
+                             <em class="product-add">+</em> 
+                        </div>
+                    </div>
+                   
+                    
+                </div>
+
+                <!--購物車空-->
+                <div class="kon-cat">
+                    <div class="catkon">
+                        <div class="kon-box">
+                            <div class="kon-hz">
+                                <img src="img/cart-air.png" />
+                                <span class="kon-wz">購物車什麼都沒有</span>
+                                <a href="http://127.0.0.1:5500/index.html" class="kon-lj">去逛逛</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+    </div>
+
+    
+    
+    
+    <!-- ***** Main Banner Area End ***** -->
+
+    <hr>
+    <!-- ***** Products Area Starts ***** -->
+
+                                            
+    <!-- ***** Products Area Ends ***** -->
+    
+    <!-- ***** Footer Start ***** -->
+    <footer>
+      <div th:replace="header :: footer">Footer</div>
+    </footer>
+    <div th:replace="header :: userimage">userimage</div>  <!-- ***** image ***** -->
+    <div th:replace="header :: userimage2">userimage2</div>  <!-- ***** image ***** -->
+
+    <!-- jQuery -->
+    <script src="assets/js/jquery-2.1.0.min.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="assets/js/popper.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+
+    <!-- Plugins -->
+    <script src="assets/js/owl-carousel.js"></script>
+    <script src="assets/js/accordions.js"></script>
+    <script src="assets/js/datepicker.js"></script>
+    <script src="assets/js/scrollreveal.min.js"></script>
+    <script src="assets/js/waypoints.min.js"></script>
+    <script src="assets/js/jquery.counterup.min.js"></script>
+    <script src="assets/js/imgfix.min.js"></script> 
+    <script src="assets/js/slick.js"></script> 
+    <script src="assets/js/lightbox.js"></script> 
+    <script src="assets/js/isotope.js"></script> 
+    
+    <!-- Global Init -->
+    <script src="assets/js/custom.js"></script>
+    <script src="js/myjs.js"></script>  
+    <script>
+
+        $(function() {
+            var selectedClass = "";
+            $("p").click(function(){
+            selectedClass = $(this).attr("data-rel");
+            $("#portfolio").fadeTo(50, 0.1);
+                $("#portfolio div").not("."+selectedClass).fadeOut();
+            setTimeout(function() {
+                $("."+selectedClass).fadeIn();
+                $("#portfolio").fadeTo(50, 1);
+            }, 500);
+                
+            });
+        });
+        for(var va=0;va<document.getElementsByClassName('product-box').length;va++){
+        	
+        	document.getElementsByClassName('pnumb')[va].min=1;
+        	
+        }
+        document.getElementById("coinz").max=document.getElementById("coinz2").value;
+       for(var va=0;va<document.getElementsByClassName('product-box').length;va++){
+    	  var stext1= parseInt(document.getElementsByClassName('price')[va].innerHTML);
+    	  var splitt =document.getElementsByClassName('firstclass')[va].value.split(',');
+    	  var stext2= parseInt(splitt[1]);
+    	 if(stext1<parseInt(splitt[2])) {document.getElementsByClassName('price')[va].innerHTML=(stext1+stext2)+'.00';}
+    	   
+       }
+      function addfee(){ 
+    	  for(var va=0;va<document.getElementsByClassName('product-box').length;va++){
+    		 
+    	  var stext1= parseInt(document.getElementsByClassName('realprice')[va].innerHTML);
+    	  var stext2= document.getElementsByClassName('product-fee')[va].value;
+    	  var stext4= document.getElementsByClassName('pnumb')[va].value;
+    	  var splitt =stext2.split(',');
+    	  var stext3= parseInt(splitt[1]);
+    	  if(((stext1*stext4)<parseInt(splitt[2])||parseInt(splitt[2])<0)&& stext4!=0){document.getElementsByClassName('price')[va].innerHTML=(stext1*stext4+stext3)+'.00';}
+    	  else{document.getElementsByClassName('price')[va].innerHTML=(stext1*stext4)+'.00';}
+    	
+    		  } 
+    	  TotalPrice();
+       }
+      function addthing(){addfee()}
+      function minusthing(){addfee()}
+      function send(){
+    	  var orderid=""; var numz="";var total=0;var fee="";
+      for(var va=0;va<document.getElementsByClassName('product-box').length;va++){
+    	  
+    	  if(document.getElementsByClassName('product-box')[va].querySelectorAll(".product-xz").length > 0){
+    	  total++;
+           var od = document.getElementsByClassName('orderid')[va].value+";";
+    		orderid+=od;
+    		var numz2 = document.getElementsByClassName('pnumb')[va].value+";";
+    		numz+=numz2;
+    		var fee2 = document.getElementsByClassName('product-fee')[va].value+";";
+    		fee+=fee2;
+    	  }
+      }
+      var coinz = document.getElementById('coinz').value;
+      orderz ={'orderid':orderid,'numz':numz,'total':total,'coinz':coinz ,'fee':fee}; 
+  	$.ajax({
+  		type:"POST",
+  		url:"sendorder",
+  		data: orderz,
+  	    dataType:"json",
+  		success:function (result){  window.location.href='shopping-finishorder';}
+  	});    
+      
+      }
+     
+        //TotalPrice();
+     
+    
+        
+    </script>
+
+
+
+</body>
+
+<script src="js/jquery.min.js">
+
+</script>
+<script src="js/shoppingcart.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/myjs.js"></script>  
+<a href="http://www.bootstrapmb.com" style="display:none">bootstrapmb</a>
+</html>

@@ -1,0 +1,117 @@
+    <header class="header-area header-sticky" style="position: fixed; background-color: white;" th:fragment="header">
+            <div class="container" >
+                            <div class="row">
+                    <div class="col-12">
+                        <nav class="main-nav">
+                            <!-- ***** Logo Start ***** -->
+                            <a href="index.html" class="logo">
+                                <img height="80" src="assets/images/shopping.png">
+                            </a>
+                            <!-- ***** Logo End ***** -->
+                            <!-- ***** Menu Start ***** -->
+                            <ul class="nav">
+                                <li class="scroll-to-section"><a th:href="@{/register}" class="active">首頁</a></li>                      
+                                    <li class="submenu">
+                                       
+                                    <a href="http://127.0.0.1:5500/product-all%20clothing.html">衣服</a>
+                                        <ul>
+                                        <li><a href="http://127.0.0.1:5500/product-boy%20cothing.html">男性上衣</a></li>
+                                        <li><a href="http://127.0.0.1:5500/product-girl%20cothing.html">女性上衣</a></li>  
+                                        </ul>
+                                    </li>
+                                </li>
+     
+                                <li class="submenu">
+                                    <a href="http://127.0.0.1:5500/product-all%20pants%20skirt.html">褲子/裙子</a>
+                                    <ul>
+                                        <li><a href="http://127.0.0.1:5500/product-pants.html">褲子</a></li>
+                                        <li><a href="http://127.0.0.1:5500/product-skirt.html">裙子</a></li>
+                                    </ul>
+     
+                                </li>
+                                <li class="submenu">
+                                    <a href="http://127.0.0.1:5500/product-all%20shoe.html">鞋子</a>
+                                    <ul>
+                                        <li><a href="http://127.0.0.1:5500/product-boy%20shoe.html">男鞋</a></li>
+                                        <li><a href="http://127.0.0.1:5500/product-girl%20shoe.html">女鞋</a></li>
+                                    </ul>
+                                </li>
+     
+                                <li class="submenu">
+                                    <a href="http://127.0.0.1:5500/product-%20all%20other%20wear.html">配飾</a>
+                                    <ul>
+                                        <li><a href="http://127.0.0.1:5500/product-hat.html">帽子</a></li>
+                                        <li><a href="http://127.0.0.1:5500/product-pag.html">背包</a></li>
+                                    </ul>
+                                </li>
+     
+     
+                                <li class="submenu">
+                                    <a href="">轉換匯率/切換語言</a>
+                                    <ul>
+                                        <li>
+                                                <li style="background-color: white;"><b>轉換匯率</b></li>                                                                            
+                                                <li><a href="">USD 美元</a></li>
+                                                <li><a href="">JPY 日圓</a></li>
+                                                <li><a href="">CNY 人民幣</a></li>                                                                               
+                                        </li>
+                                                <li style="background-color: white;"><b>切換語言</b></li>                                           </a></li>
+                                                <li><a href="">英文</a></li>
+                                                <li><a href="">繁體中文</a></li>
+                                                <li><a href="">簡體中文</a></li>
+                                         
+                                    </ul>
+                                </li>
+                                                       
+                                 
+                                <li class="submenu">
+                                    <a href="javascript:;"><i class="fa fa-bell"></i></a>
+                                    <ul>
+                                        <li><a href="#">Features Page 1</a></li>
+                                        <li><a href="#">Features Page 2</a></li>
+                                        <li><a href="#">登出</a></li>
+                                    </ul>
+                                </li>
+     
+                               
+                                </li><li class="submenu">
+                                    <a href="javascript:;"><i class="fa fa-shopping-cart"></i></a>
+                                    <ul>
+                                        <li><a th:href="@{sign_in}">Features Page 1</a></li>
+                                    </ul>
+                                </li>
+                               
+                               </li >
+                               
+                               <li class="submenu"  th:if="${session.uid <= 0}">
+                               	
+                                    <a href="javascript:;" disabled >尚未登入</a>
+                                    <ul>
+                                        <li><a th:href="@{register}">註冊</a></li>
+                                         <li><a th:href="@{sign_in}">登入</a></li>
+                                    </ul> 
+                                </li>
+                                 </li  >
+                                 
+                                 <li class="submenu" th:if="${session.uid >= 1}">
+                               	
+                                    <a href="javascript:;" disabled th:text="${name}" style="text-transform: none;"></a>
+                                
+                                    <ul>
+                                        <li><a th:href="@{person-memberdata}">註冊</a></li>
+                                         <li><a th:href="@{person-buy}">登入</a></li>
+                                          <li><a th:href="@{logout}">登出</a></li>
+                                    </ul>
+                                </li>
+                                
+                                
+
+
+                            </ul>      
+                            <!-- ***** Menu End ***** -->
+                        </nav>
+                    </div>
+                </div>
+            </div>
+    </header>
+    

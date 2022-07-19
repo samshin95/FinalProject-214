@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+
+    <title>賣家管理頁面</title>
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.css">
+
+    <link rel="stylesheet" href="assets/css/templatemo-hexashop.css">
+
+    <link rel="stylesheet" href="assets/css/owl-carousel.css">
+
+    <link rel="stylesheet" href="assets/css/lightbox.css">
+    
+    <style>
+    .temp0 { margin-top:5px;margin-bottom:5px;font-size: smaller; }
+    .temp9 { margin-top:5px;margin-bottom:5px;font-size: smaller; }
+    </style>
+    </head>
+    <body>
+    
+    <!-- ***** Preloader Start ***** -->
+    <div id="preloader">
+        <div class="jumper">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>  
+    <!-- ***** Preloader End ***** -->
+    
+    
+    <!-- ***** Header Area Start ***** -->
+      <header class="header-area header-sticky" style="position: fixed; background-color: white;" th:fragment="header">
+       <div th:replace="header :: header">Header</div>
+      </header>
+      <!-- ***** Header Area End ***** -->
+
+    <!-- ***** Main Banner Area Start ***** -->
+    <div class="page-heading" id="top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="inner-content">
+                        <h2 th:text="${ session.name+'的賣家管理頁面'}"></h2>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Main Banner Area End ***** -->
+
+
+    <!-- ***** Products Area Starts ***** -->
+
+      
+
+<hr>
+
+    <div class="container">
+        <center>
+        <h3 style="background-color:darkblue;color:white"><b>商品新增</b></h3>
+        </center>
+        <br>
+        <br>
+        <p>
+		<form action="addproduct" method="post" enctype="multipart/form-data" id="thisform" onsubmit="return valthisform()">
+			<div class="row">
+				<div class="col-sm-6">
+                <center><label for="input11" class="form-label"><b>預覽商品圖片</b></label> 
+                    <br>
+                    <img src="assets/images/noimage.jpg" alt="your image" id="blah" style="max-height:370px; max-width:390px; height:auto; width:auto;">
+                        <br><br>
+                    <label for="input11" class="form-label"><b>上傳商品圖片</b></label>
+						<input type="file" accept="image/*" class="form-control" id="imgInp" name="file" style="margin-bottom: 10px;">
+                     <div ><!-- 錯誤資訊 -->
+                         <span class="txt1" style="color: red;margin-top: 10px;" th:text="${error}" id="errortext"></span>
+                     </div>
+                </center>
+				 </div>
+				 <div class="col-sm-6">
+                    <label for="input1" class="form-label"><b>商品名稱</b></label>
+					<input type="text" class="form-control" name="productname" id="input1" placeholder="請輸入商品名稱">
+                    <br>
+					<label for="input2" class="form-label"><b>商品描述</b></label>
+					<input type="text" class="form-control" name="producttext" id="input2" placeholder="請輸入商品描述">
+					<br>
+					<label for="input10" class="form-label"><b>商品價格</b></label>
+					<input type="number" class="form-control" name="productprice" id="input10" max='9999999' min='1' placeholder="請輸入商品價格">
+                    <br>
+					<label for="input0" class="form-label" ><b>商品分類</b></label>
+                    <div class="row">
+                         <div class="col-sm-12">
+                         <select class="form-control"  name="category" form="thisform" id="input0" style="color: grey; ">
+                            <option style="display: none;">請輸入商品分類</option>
+                            <option value="men_top">男性上衣</option>
+                            <option value="women_top">女性上衣</option>
+                            <option value="pants">褲子</option>
+                            <option value="dress">裙子</option>
+                            <option value="men_shoe">男鞋</option>
+                            <option value="women_shoe">女鞋</option>
+                            <option value="hat">帽子</option>
+                            <option value="bag">背包</option>
+                        </select>
+                          </div>
+                       </div>
+                    <br>
+					<label for="input12" class="form-label"><b>款式新增</b></label>                    
+                    <div class="row">
+                        <div class="col-sm-11"><input type="text" class="form-control" id="input40" placeholder="請輸入款式(長袖,顏色)" maxlength="5"></div>
+                        <div class="col-sm-1">  <button type ="button" class="btn btn-primary " onclick="myFunction1()" style="background-color: darkgray; color: white;border: none;">+</button></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2" style="padding-right:0px;" id="num1"></div>
+                        <div class="col-sm-2" style="padding-left:0px;"  id="num2"></div>
+                        <div class="col-sm-2" style="padding-right:0px;" id="num3"></div>
+                        <div class="col-sm-2" style="padding-left:0px;" id="num4"></div>
+                        <div class="col-sm-2" style="padding-right:0px;" id="num5"></div>
+                        <div class="col-sm-2" style="padding-left: 0px;" id="num6"></div>
+                    </div>
+                     <label for="input1" class="form-label" style="margin-top: 5px;"><b>貨運方式</b></label>
+					<p style="margin-bottom: 10px;">
+                        <b>超商：</b>&emsp;
+                       <span style="position:relative;">
+                        <input type="checkbox" id="cbox1" name="shipping" value="seven" >
+                        <label for="cbox1">7-ELEVEN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                        <label for="cbox1" style="position:absolute;left:-1px;top:15px;font-size: xx-small;width: 200px;height: auto;">運費60(滿1000免運)</label>
+                        </span>
+                        <span style="position:relative;">
+                            <input type="checkbox" id="cbox2" name="shipping" value="family" >
+                            <label for="cbox2">全家便利商店</label>
+                            <label for="cbox2" style="position: absolute;left:3px;top:15px;font-size: xx-small;width: 200px;height: auto;">運費60(滿1000免運)</label>
+                            </span>
+                        &emsp;
+                        <span style="position:relative;">
+                            <input type="checkbox" id="cbox3" name="shipping" value="hi-life" >
+                            <label for="cbox3">萊爾富&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                            <label for="cbox3" style="position: absolute;left:-1px;top:15px;font-size: xx-small;width: 200px;height: auto;">運費50(滿199免運)</label>
+                            </span>
+                            &emsp;
+                        <span style="position:relative;">
+                            <input type="checkbox" id="cbox4" name="shipping" value="ok" >
+                            <label for="cbox4">OK便利商店&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                            <label for="cbox4" style="position: absolute;left:3px;top:15px;font-size: xx-small;width: 200px;height: auto;">運費45(滿99免運)</label>
+                            </span>
+                          
+                    </p>
+                   
+                   <b>宅配：</b>
+                   
+                   <span style="position:relative;">&nbsp;
+                    <input type="checkbox" id="cbox5" name="shipping" value="post" >
+                    <label for="cbox5">中華郵政&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <label for="cbox5" style="position: absolute;left:3px;top:20px;font-size: xx-small;width: 200px;height: auto;">&nbsp;&nbsp;運費80(滿1000免運)</label>
+                    </span>
+                    <span style="position:relative;">&nbsp;
+                        <input type="checkbox" id="cbox6" name="shipping" value="cat" >
+                        <label for="cbox6">黑貓宅急便&nbsp;</label>
+                        <label for="cbox6" style="position: absolute;left:6px;top:20px;font-size: xx-small;width:200px;height:auto;">&nbsp;&nbsp;運費90</label>
+                    </span>
+                    <br>
+                    <div align="right" style="position:relative;top:-15px">
+                        <br>
+                        <p>
+                    <button type ="reset" class="btn btn-primary" style="background-color: #005477;color: white;"><b>全部清除</b></button>
+                    <button type ="submit" class="btn btn-primary"  style="background-color: #005477;color: white;"><b>確認無誤上傳商品</b></button>
+                    </div>
+                    
+                    
+                    
+				</div>
+                  
+		</form>
+	</div>
+	<script src="js/bootstrap.bundle.min.js"></script>
+
+
+</div>  
+
+<br>
+
+<hr>
+
+    <!-- ***** Products Area Ends ***** -->
+    
+    <!-- ***** Footer Start ***** -->
+    <footer>
+      <div th:replace="header :: footer">Footer</div>
+    </footer>
+    
+
+    <!-- jQuery -->
+    <script src="assets/js/jquery-2.1.0.min.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="assets/js/popper.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+
+    <!-- Plugins -->
+    <script src="assets/js/owl-carousel.js"></script>
+    <script src="assets/js/accordions.js"></script>
+    <script src="assets/js/datepicker.js"></script>
+    <script src="assets/js/scrollreveal.min.js"></script>
+    <script src="assets/js/waypoints.min.js"></script>
+    <script src="assets/js/jquery.counterup.min.js"></script>
+    <script src="assets/js/imgfix.min.js"></script> 
+    <script src="assets/js/slick.js"></script> 
+    <script src="assets/js/lightbox.js"></script> 
+    <script src="assets/js/isotope.js"></script> 
+    
+    <!-- Global Init -->
+    <script src="assets/js/custom.js"></script>
+    <script src="js/myjs.js"></script>  
+    <script>
+    window.onload = nocache();
+    function nocache() {
+        
+    var nods = document.getElementsByClassName('NO-CACHE');
+    for (var i = 0; i < nods.length; i++)
+    {    
+    var aaa="?a=" + Math.random();
+        nods[i].setAttribute("src",nods[i].getAttribute("src")+aaa);
+    }
+    }
+        $(function() {
+            var selectedClass = "";
+            $("p").click(function(){
+            selectedClass = $(this).attr("data-rel");
+            $("#portfolio").fadeTo(50, 0.1);
+                $("#portfolio div").not("."+selectedClass).fadeOut();
+            setTimeout(function() {
+              $("."+selectedClass).fadeIn();
+              $("#portfolio").fadeTo(50, 1);
+            }, 500);
+                
+            });
+        });
+        
+        var fruits = [];
+        function myFunction() {
+                   document.getElementById("num1").innerHTML="";//Add field html
+                   document.getElementById("num2").innerHTML=""; //Add field html
+                   document.getElementById("num3").innerHTML="";//Add field html
+                   document.getElementById("num4").innerHTML=""; //Add field html
+                   document.getElementById("num5").innerHTML="";//Add field html
+                   document.getElementById("num6").innerHTML=""; //Add field html
+                for (let i = 0; i < fruits.length; i++) {
+                    var choose=(i+4)%3; 
+                    var temp2 = "<input type='number' class='form-control temp9' max='99' min='1' value='"+fruits[i][1]+"'name='size'>";
+                    var temp1="<input type='text' class='form-control temp0' margin-top: 10px; readonly='readonly' onclick='myFunction2(event)' name='sizenum' value='"+fruits[i][0]+"' title='click to remove'>";
+                    switch (choose) {
+                   
+                   case 1: 
+                   document.getElementById("num1").innerHTML+=temp1;//Add field html
+                   document.getElementById("num2").innerHTML+=temp2; //Add field html
+                    break;
+                    
+                    case 2:   
+                    document.getElementById("num3").innerHTML+=temp1;//Add field html
+                    document.getElementById("num4").innerHTML+=temp2; //Add field html
+                    break;
+                     
+                    case 0:   
+                   document.getElementById("num5").innerHTML+=temp1;//Add field html
+                   document.getElementById("num6").innerHTML+=temp2; //Add field html
+                    break;
+                    default:
+                    alert("nothing!");
+                    }
+                } // $(wrapper).append(fieldHTML); //Add field html
+               }
+        function myFunction1() {
+        	if(document.getElementById("input40").value.length!=0){
+        		fruits= [];
+                var tem0 = document.getElementsByClassName("temp0");
+                var tem9 = document.getElementsByClassName("temp9");
+                for(var v=0;v< tem9.length;v++ ){var array1= new Array( tem0[v].value,tem9[v].value);fruits.push(array1);}
+                var noinclude=true;    
+                for(var vv=0;vv<fruits.length;vv++){
+                if(fruits[vv][0]==document.getElementById("input40").value) {document.getElementById("errortext").innerText="same size input error!";noinclude=false;}
+                }
+                if(noinclude){ var array1= new Array( document.getElementById("input40").value,1);fruits.push(array1);}
+               
+                myFunction();document.getElementById("input40").value = ""
+        	} 
+        	}
+        function myFunction2() { fruits= [];
+            var tem0 = document.getElementsByClassName("temp0");
+            var tem9 = document.getElementsByClassName("temp9");
+            for(var v=0;v< tem9.length;v++ ){var array1= new Array( tem0[v].value,tem9[v].value);fruits.push(array1);}
+            fruits = fruits.filter(item => item[0] !== event.target.value); myFunction(); }
+        
+        imgInp.onchange = evt => {
+            const [file] = imgInp.files
+            if (file) {blah.src = URL.createObjectURL(file);CheckDimension()}
+        }
+            
+        function CheckDimension() {
+        //Get reference of File.
+        var fileUpload = document.getElementById("imgInp");
+       //Initiate the FileReader object.
+                var reader = new FileReader();
+                //Read the contents of Image File.
+                reader.readAsDataURL(fileUpload.files[0]);
+                reader.onload = function (e) {
+                    //Initiate the JavaScript Image object.
+                    var image = new Image(); //Set the Base64 string return from FileReader as source.
+                    image.src = e.target.result;//Validate the File Height and Width.
+                    image.onload = function () {
+                        var height = this.height;
+                        var width = this.width;
+                        var temph =height * 370/width;
+                        var tempw =width * 390/height;
+                         if(tempw*390>temph*370){document.getElementById("blah").style.height="auto";document.getElementById("blah").style.width="370px";}
+                         else{document.getElementById("blah").style.height="390px";document.getElementById("blah").style.width="auto";}
+                            //alert(height+"=Height and Width="+width);
+                        }; }
+            }
+        function valthisform()
+        {
+            if( validate1("shipping")&& validate2("size")&&validate2("producttext")&&validate2("productname")&&validate2("category"))
+        	{return true;}
+            else{document.getElementById("errortext").innerText="input empty error!";
+            return false; }
+        }
+        
+        function validate1(name){ var checkboxs=document.getElementsByName(name);
+        var okay=false;
+        for(var i=0,l=checkboxs.length;i<l;i++)
+        {
+            if(checkboxs[i].checked)
+            {
+                okay=true;
+                break;
+            }
+        }
+        if(okay){return true;}
+        else{return false;} }
+        
+        function validate2(name)
+        {
+            var checkboxs=document.getElementsByName(name);
+            var okay=false;
+            for(var i=0;i<checkboxs.length;i++)
+            {   
+                if(checkboxs[i].value != null && checkboxs[i].value.length  > 0)
+                {     
+                	 okay=true;
+                     break;
+                }   
+            }
+            if(okay){return true;}
+        else{return false;} 
+        }
+   </script>
+
+  </body>
+
+</html>
